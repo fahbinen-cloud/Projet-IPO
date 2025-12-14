@@ -2,9 +2,9 @@ import javax.swing.Timer;
 
 public class Donjon {
     public static void main(String[] args) {
-        int tempo = 100;
+        int tempo = 10;
         Jeu jeu = new Jeu("laby1.txt");
-        FenetreJeu graphic = new FenetreJeu(jeu.terrain);
+        FenetreJeu graphic = jeu.getFenetre();
         Timer timer = new Timer(tempo, e -> {
             jeu.tour();
             graphic.repaint();

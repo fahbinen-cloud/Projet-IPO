@@ -33,7 +33,6 @@ public class Terrain {
                         case '#': cc = new CaseIntraversable(l, c); break;
                         case ' ': cc = new CaseOrdinaire(l, c); break;
                         case 'O': cc = new Sortie(l, c); break;
-                        case '.': cc = new CaseOrdinaire(l, c, new Bille(c+0.5, l+0.5, 0.1, 0.05)); break;
                         default:  cc = null; break;
                     }
                     carte[l][c] = cc;
@@ -66,18 +65,18 @@ public class Terrain {
     }
 
     public void updateBillePosition(Bille b) {
-        int i = (int) b.getY();
-        int j = (int) b.getX();
+        int i = (int) (b.getY() );
+        int j = (int) (b.getX() );
 
         for (int r = 0; r < hauteur; r++) {
             for (int c = 0; c < largeur; c++) {
                 if (carte[r][c] instanceof CaseTraversable) {
-                    ((CaseTraversable) carte[r][c]).setContenu(null);
+                    ((CaseTraversable) carte[r][c]).leave(b);
                 }
             }
         }
 
-        if (carte[i][j] instanceof CaseTraversable) {
+        if (i >= 0 && i < hauteur && j >= 0 && j < largeur && carte[i][j] instanceof CaseTraversable) {
             ((CaseTraversable) carte[i][j]).setContenu(b);
         }
 

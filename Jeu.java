@@ -1,21 +1,32 @@
 public class Jeu {
 
-    Terrain terrain;
-    int sortis = 0;
-    Bille bille;
-    FenetreJeu fenetre;
+    private Terrain terrain;
+    private FenetreJeu fenetre;
+    private Bille bille;
 
     /* Initialisation d'un jeu avec le terrain initial dÃ©crit dans
        le fichier [f] donnÃ© en paramÃ¨tre */
     public Jeu(String f) {
         this.terrain = new Terrain(f);
-        this.bille = new Bille(1., 1., 0.1, 0.05);
-        this.fenetre = new FenetreJeu(terrain);
+        this.bille = new Bille(1., 1.);
+        this.fenetre = new FenetreJeu(this.terrain, this.bille);
+        this.terrain.updateBillePosition(this.bille);
     }
 
     public void tour(){
         bille.avance();
-        terrain.updateBillePosition(bille);
+        terrain.updateBillePosition(this.bille);
+    }
+    public Terrain getTerrain(){
+        return this.terrain;
+    }
+
+    public FenetreJeu getFenetre(){
+        return this.fenetre;
+    }
+
+    public Bille getBille(){
+        return this.bille;
     }
 
     public static void main(String[] args) {

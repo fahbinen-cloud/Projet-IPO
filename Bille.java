@@ -6,21 +6,44 @@ public class Bille{
     private double x,y;
     private double vx,vy;
     private double dx,dy;
-    private double vitesse;
+    boolean avance = false;
 
-    public Bille(double x, double y, double vx, double vy){
+    public Bille(double x, double y){
         this.x = x;
         this.y = y;
-        this.vx = vx;
-        this.vy = vy;
-        this.vitesse = Math.sqrt(this.vx*this.vx + this.vy*this.vy);
-        this.dx = vx / this.vitesse;
-        this.dy = vy / this.vitesse;
+        this.vx = 0;
+        this.vy = 0;
+        this.dx = 0;
+        this.dy = 0;
     }
 
     public void avance(){
-        this.x += this.vx;
-        this.y += this.vy;
+        //double vitesse = Math.sqrt(this.vx*this.vx + this.vy*this.vy);
+        if (this.avance == true){
+            /*this.x += this.vx;
+            this.y += this.vy;*/
+        }else{
+            /*if(vitesse> 0.005){
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vx = this.vx * (1 - (0.005/vitesse));
+                this.vy = this.vy * (1 - (0.005/vitesse));
+            }
+
+            if(vitesse > 0){
+                this.dx = this.vx / vitesse;
+                this.dy = this.vy / vitesse;
+            }else{
+                this.dx = 0;
+                this.dy = 0;
+            }
+
+            else{*/
+                this.vx = 0;
+                this.vy = 0;
+            //}
+        
+        }
     }
 
     public double getX(){
@@ -29,6 +52,24 @@ public class Bille{
 
     public double getY(){
         return this.y;
+    }
+
+    public double getVx(){
+        return this.vx;
+    }
+
+    public double getVy(){
+        return this.vy;
+    }
+
+    public void setVitesse(double vx, double vy){
+        this.vx = vx;
+        this.vy = vy;
+    }
+
+    public void setCoord(double x, double y){
+        this.x = x;
+        this.y = y;
     }
 
     public String toString(String background){
