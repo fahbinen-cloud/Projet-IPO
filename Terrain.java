@@ -6,6 +6,7 @@ public class Terrain {
 
     private int hauteur, largeur;
     private Case[][] carte;
+    private Jeu jeu;
 
     /* Initialisation d'un terrain Ã  partir de la description donnÃ©e par
        un fichier texte. Format du fichier de description :
@@ -16,7 +17,8 @@ public class Terrain {
          ' ' (espace) pour une case libre
          'o' pour une sortie
     */
-    public Terrain(String file) {
+    public Terrain(String file, Jeu jeu) {
+        this.jeu = jeu;
         try {
             Scanner sc = new Scanner(new FileInputStream(file));
             this.hauteur = sc.nextInt();
@@ -32,7 +34,7 @@ public class Terrain {
                     switch (ch) {
                         case '#': cc = new CaseIntraversable(l, c); break;
                         case ' ': cc = new CaseOrdinaire(l, c); break;
-                        case 'O': cc = new Sortie(l, c); break;
+                        case 'O': cc = new Sortie(l, c, jeu); break;
                         default:  cc = null; break;
                     }
                     carte[l][c] = cc;

@@ -4,6 +4,10 @@ import java.util.Scanner;
 abstract class CaseTraversable extends Case{
     protected Bille contenu;
 
+    public CaseTraversable(int l, int c) {
+        super(l, c);
+        this.contenu = null;
+    }
     
     public CaseTraversable(int l, int c, Bille b){
         super(l, c);

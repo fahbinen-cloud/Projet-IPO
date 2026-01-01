@@ -5,46 +5,87 @@ import java.lang.Math;
 public class Bille{
     private double x,y;
     private double vx,vy;
-    private double dx,dy;
-    boolean avance = false;
+    private Jeu jeu;
+    private double rayon = 0.3;
+    boolean avancer = false;
 
-    public Bille(double x, double y){
+    public Bille(double x, double y, Jeu jeu){
         this.x = x;
         this.y = y;
         this.vx = 0;
         this.vy = 0;
-        this.dx = 0;
-        this.dy = 0;
+        this.jeu = jeu;
     }
 
-    public void avance(){
-        //double vitesse = Math.sqrt(this.vx*this.vx + this.vy*this.vy);
-        if (this.avance == true){
-            /*this.x += this.vx;
-            this.y += this.vy;*/
-        }else{
-            /*if(vitesse> 0.005){
-                this.x += this.vx;
-                this.y += this.vy;
-                this.vx = this.vx * (1 - (0.005/vitesse));
-                this.vy = this.vy * (1 - (0.005/vitesse));
-            }
+    public void avance() {
+        this.x += this.vx;
+        this.y += this.vy;
 
-            if(vitesse > 0){
-                this.dx = this.vx / vitesse;
-                this.dy = this.vy / vitesse;
-            }else{
-                this.dx = 0;
-                this.dy = 0;
-            }
+        gererCollisions();
 
-            else{*/
-                this.vx = 0;
-                this.vy = 0;
-            //}
-        
+        double v = vitesseAbsolue();
+        if (v > 0) {
+            double dx = vx / v;
+            double dy = vy / v;
+            double nouvelleVitesse = Math.max(0, v - 0.005);
+            vx = dx * nouvelleVitesse;
+            vy = dy * nouvelleVitesse;
+        }
+
+        // vitesse max
+        if (v > 0.2) {
+            vx = vx * 0.2 / v;
+            vy = vy * 0.2 / v;
         }
     }
+
+    public void gererCollisions() {
+        Terrain terrain = jeu.getTerrain();
+        int colonne = (int) Math.floor(x);
+        int ligne = (int) Math.floor(y);
+        
+        // vérifier les collisions avec les murs
+        // collision avec mur gauche
+        if (x - rayon < colonne && colonne > 0) {
+            Case caseGauche = terrain.getCase(ligne, colonne-1);
+            if (caseGauche != null && caseGauche instanceof CaseIntraversable && vx < 0) {
+                vx = -vx * 0.8; // Rebond avec perte d'énergie
+                x = colonne + rayon; // Corriger la position
+            }
+        }
+        
+        // collision avec mur droite
+        if (x + rayon > colonne + 1 && colonne < terrain.getLargeur() - 1) {
+            Case caseDroite = terrain.getCase(ligne, colonne+1);
+            if (caseDroite != null && caseDroite instanceof CaseIntraversable && vx > 0) {
+                vx = -vx * 0.8;
+                x = colonne + 1 - rayon;
+            }
+        }
+        
+        // Collision avec mur haut
+        if (y - rayon < ligne && ligne > 0) {
+            Case caseHaut = terrain.getCase(ligne-1, colonne);
+            if (caseHaut != null && caseHaut instanceof CaseIntraversable && vy < 0) {
+                vy = -vy * 0.8;
+                y = ligne + rayon;
+            }
+        }
+        
+        // Collision avec mur bas
+        if (y + rayon > ligne + 1 && ligne < terrain.getHauteur() - 1) {
+            Case caseBas = terrain.getCase(ligne+1, colonne);
+            if (caseBas != null && caseBas instanceof CaseIntraversable && vy > 0) {
+                vy = -vy * 0.8;
+                y = ligne + 1 - rayon;
+            }
+        }
+        // verifier que la bille est bien dans les limites du terrain
+        x = Math.max(rayon, Math.min(x, terrain.getLargeur() - rayon));
+        y = Math.max(rayon, Math.min(y, terrain.getHauteur() - rayon));
+    }
+
+
 
     public double getX(){
         return this.x;
@@ -61,15 +102,25 @@ public class Bille{
     public double getVy(){
         return this.vy;
     }
+    public double getRayon() { return rayon; }
 
     public void setVitesse(double vx, double vy){
         this.vx = vx;
         this.vy = vy;
     }
 
+    public void setPosition(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public void setCoord(double x, double y){
         this.x = x;
         this.y = y;
+    }
+
+    public double vitesseAbsolue() {
+        return Math.sqrt(vx * vx + vy * vy);
     }
 
     public String toString(String background){

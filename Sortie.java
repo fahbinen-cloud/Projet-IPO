@@ -2,20 +2,22 @@ import java.util.Scanner;
 
 // Attention : nom identique au nom de fichier, majuscules comprises
 public class Sortie extends CaseTraversable{
+    private Jeu jeu;
 
-    public Sortie(int l, int c){
-        super(l, c, null);
+    public Sortie(int l, int c, Jeu jeu){
+        super(l, c);
+        this.jeu = jeu;
     }
     
-    public Sortie(int l, int c, Bille b){
-        super(l, c, b);
-    }
 
-    /*@Override
+    @Override
     public void enter(Bille b){
-        b.sort();
-        this.contenu = null;
-    }*/
+        super.enter(b);
+        // victoire
+        if (jeu != null) {
+            jeu.victoire();
+        }
+    }
 
     @Override
     public String toString(){

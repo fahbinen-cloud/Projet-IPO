@@ -13,17 +13,13 @@ public class CaseIntraversable extends Case{
     }
 
     @Override
-    public void enter(Bille b) {
-        //touch(b);
-    }
+    public void enter(Bille b) {}
 
     @Override
     public void leave(Bille b) {}
 
     @Override
-    public void touch(Bille b) {
-        //b.rebond();
-    }
+    public void touch(Bille b) {}
 
     @Override
     public String toString(){
