@@ -32,7 +32,7 @@ https://github.com/user-attachments/assets/a53e49e6-8768-4c83-a706-9eaef000884f
 ## ❌ Défaite
 
 🖼️ **Écran de défaite**  
-Voici ce qu’il se passe lorsque la bille tombe dans un trou ou échoue :
+Voici ce qu’il se passe lorsque la bille tombe dans un trou et échoue :
 <img width="741" height="771" alt="Projet Redux" src="https://github.com/user-attachments/assets/bc4fd7fe-4560-4b33-ae44-a71d751b1205" />
 
 ---
