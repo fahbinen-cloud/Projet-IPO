@@ -48,7 +48,7 @@ Voici ce qu’il se passe lorsque la bille tombe dans un trou et échoue :
 - 🟢 **Sortie** : victoire 🎉
 
 ---
-## ✨ Remarques
+## Remarques
 
 Projet réalisé dans un objectif pédagogique, avec un accent sur :
 - la modélisation objet
