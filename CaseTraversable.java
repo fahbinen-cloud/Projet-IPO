@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 // Attention : nom identique au nom de fichier, majuscules comprises
-abstract class CaseTraversable extends Case{
+public class CaseTraversable extends Case{
     protected Bille contenu;
 
     public CaseTraversable(int l, int c) {
@@ -41,5 +41,10 @@ abstract class CaseTraversable extends Case{
 
     public void setContenu(Bille b){
         this.contenu = b;
+    }
+
+    @Override
+    public boolean estTraversable() {
+        return true;
     }
 }

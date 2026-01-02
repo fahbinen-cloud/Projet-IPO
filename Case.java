@@ -21,4 +21,5 @@ abstract class Case{
     abstract public void enter(Bille b);
     abstract public void leave(Bille b);
     abstract public void touch(Bille b);
+    abstract boolean estTraversable();
 }

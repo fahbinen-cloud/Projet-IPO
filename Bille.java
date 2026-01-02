@@ -48,7 +48,7 @@ public class Bille{
         // collision avec mur gauche
         if (x - rayon < colonne && colonne > 0) {
             Case caseGauche = terrain.getCase(ligne, colonne-1);
-            if (caseGauche != null && caseGauche instanceof CaseIntraversable && vx < 0) {
+            if (caseGauche != null && caseGauche.estTraversable() == false && vx < 0) {
                 vx = -vx * 0.8; // Rebond avec perte d'énergie
                 x = colonne + rayon; // Corriger la position
             }
@@ -57,7 +57,7 @@ public class Bille{
         // collision avec mur droite
         if (x + rayon > colonne + 1 && colonne < terrain.getLargeur() - 1) {
             Case caseDroite = terrain.getCase(ligne, colonne+1);
-            if (caseDroite != null && caseDroite instanceof CaseIntraversable && vx > 0) {
+            if (caseDroite != null && caseDroite.estTraversable() == false && vx > 0) {
                 vx = -vx * 0.8;
                 x = colonne + 1 - rayon;
             }
@@ -66,7 +66,7 @@ public class Bille{
         // Collision avec mur haut
         if (y - rayon < ligne && ligne > 0) {
             Case caseHaut = terrain.getCase(ligne-1, colonne);
-            if (caseHaut != null && caseHaut instanceof CaseIntraversable && vy < 0) {
+            if (caseHaut != null && caseHaut.estTraversable() == false && vy < 0) {
                 vy = -vy * 0.8;
                 y = ligne + rayon;
             }
@@ -75,7 +75,7 @@ public class Bille{
         // Collision avec mur bas
         if (y + rayon > ligne + 1 && ligne < terrain.getHauteur() - 1) {
             Case caseBas = terrain.getCase(ligne+1, colonne);
-            if (caseBas != null && caseBas instanceof CaseIntraversable && vy > 0) {
+            if (caseBas != null && caseBas.estTraversable() == false && vy > 0) {
                 vy = -vy * 0.8;
                 y = ligne + 1 - rayon;
             }

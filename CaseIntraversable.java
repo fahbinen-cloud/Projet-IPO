@@ -26,4 +26,9 @@ public class CaseIntraversable extends Case{
         return "###";
     }
 
+    @Override
+    public boolean estTraversable() {
+        return false;
+    }
+
 }

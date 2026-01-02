@@ -43,7 +43,16 @@ public class FenetreJeu extends JPanel implements MouseListener, MouseMotionList
                     couleur = Color.BLACK;
                 } else if(c instanceof Sortie){
                     couleur = Color.GREEN;
-                } else {
+                } else if(c instanceof Teleporte){
+                    couleur = Color.ORANGE;
+                }else if(c instanceof Trou){
+                    couleur = Color.RED;
+                }else if(c instanceof Cle){
+                    couleur = Color.YELLOW;
+                }else if(c instanceof Porte){
+                    Porte p = (Porte) c;
+                    couleur = p.getCouleur();
+                }else {
                     couleur = Color.LIGHT_GRAY;
                 }
 
@@ -62,7 +71,7 @@ public class FenetreJeu extends JPanel implements MouseListener, MouseMotionList
         int rayonPixels = (int) (bille.getRayon() * tailleCase);
         
         // Dessiner la bille (centre aux coordonnées, rayon ajusté)
-        g.setColor(Color.RED);
+        g.setColor(Color.BLUE);
         g.fillOval(x - rayonPixels, y - rayonPixels, rayonPixels * 2, rayonPixels * 2);
         
         // Contour de la bille
@@ -128,5 +137,11 @@ public class FenetreJeu extends JPanel implements MouseListener, MouseMotionList
         JOptionPane.showMessageDialog(frame,
             "Bravo! Vous avez atteint la sortie!\n",
             "Victoire!", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void afficherDefaite(){
+        JOptionPane.showMessageDialog(frame,
+            "Oh non! Vous êtes tomber dans un trou!\n",
+            "Défaite!", JOptionPane.INFORMATION_MESSAGE);
     }
 }
