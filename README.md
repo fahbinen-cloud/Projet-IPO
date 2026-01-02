@@ -39,7 +39,7 @@ Voici ce qu’il se passe lorsque la bille tombe dans un trou ou échoue :
 
 ## 🧩 Éléments du jeu
 
-- 🟦 **Case ordinaire** : libre
+- ⬜️ **Case ordinaire** : libre
 - ⬛ **Case intraversable** : mur
 - 🟡 **Clé** : permet d’ouvrir une porte
 - 🚪 **Porte** : bloquée tant que la clé n’est pas récupérée
