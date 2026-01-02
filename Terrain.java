@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Terrain {
 
     private int hauteur, largeur;
-    protected Case[][] carte;
+    private Case[][] carte;
     private Jeu jeu;
     private Map<Integer, Porte> portes = new HashMap<>();
 
